@@ -1,0 +1,31 @@
+.form-control {
+    background-color: #a7887b;
+    color: #38271f;
+}
+
+.form-floating>.form-control {
+    border-radius: 0.7rem;
+}
+
+.form-floating>label {
+    color: #e3dbcb;
+}
+
+.form-floating>.form-control:focus, .form-floating>.form-control:not(:placeholder-shown) {
+    background-color: #38271f;
+    color: #e3dbcb;
+}
+
+button.btn.btn-primary.btn-lg {
+ background-color: #38271f;
+ color: #e3dbcb;
+ border-color: #e3dbcb;
+ border-radius: .7rem;
+ border-width: medium;
+} 
+
+button.btn.btn-primary.btn-lg:hover {
+    background-color: #e3dbcb;;
+    color: #38271f;
+    border-color: #38271f;
+} 

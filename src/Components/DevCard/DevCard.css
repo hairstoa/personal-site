@@ -1,0 +1,36 @@
+.card-title {
+    font-size: calc(1.3rem + .6vw);
+    color: #38271f;
+}
+
+.list-group { 
+    justify-content: center;
+    align-items: center;
+}
+
+.list-group-item-warning {
+    color: #664d03;
+    background-color: #e9e4d3;
+}
+
+div.card.bg-transparent {
+    margin-bottom: 0.5rem;
+    border-radius: 0.7rem;
+    border-width: 3px;
+    border-color: #e9e4d3;
+
+}
+
+button.btn.btn-primary {
+    background-color: #e3dbcb;;
+    color: #38271f;
+    border-color: #38271f;
+    border-radius: .7rem;
+    border-width: medium;
+} 
+   
+   button.btn.btn-primary:hover {
+    background-color: #38271f;
+    color: #e3dbcb;
+    border-color: #e3dbcb;
+} 
