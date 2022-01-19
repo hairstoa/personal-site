@@ -3,12 +3,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Col, Container, Row } from "react-bootstrap";
 import { DevCard } from "../../Components";
-import useWindowDimensions from "../../util/windowDimensions";
 
 function DevPage(props) {
     const [ repos, setRepos ] = useState([]);
-
-    // const { height, width } = useWindowDimensions();
 
     useEffect(() => {
         // Fetch all my repositories from GitHub

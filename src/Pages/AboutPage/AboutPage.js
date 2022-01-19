@@ -1,12 +1,9 @@
 import { Col, Container, Image, Row } from "react-bootstrap";
-import useWindowDimensions from "../../util/windowDimensions";
 
 import "./AboutPage.css";
 
 function AboutPage() {
-
-    // const { height, width } = useWindowDimensions();
-
+ 
     return (
         <div className="page" id="about-page">
         <Container fluid >

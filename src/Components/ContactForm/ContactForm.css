@@ -16,6 +16,11 @@
     color: #e3dbcb;
 }
 
+#contact-validation {
+    background-color: transparent;
+    border-width: 0;
+}
+
 button.btn.btn-primary.btn-lg {
  background-color: #38271f;
  color: #e3dbcb;

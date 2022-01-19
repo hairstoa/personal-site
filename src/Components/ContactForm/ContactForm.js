@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import { db } from '../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 import { FloatingLabel } from "react-bootstrap";
 
 import "./ContactForm.css";
+import { FormErrors } from "..";
+
 // import { AlertMessage } from "..";
+
 
 
 const ContactForm = () => {
@@ -23,8 +27,42 @@ const ContactForm = () => {
     const [nameValid, setNameValid] = useState(false);
     const [messageValid, setMessageValid] = useState(false);
     const [formValid, setFormValid] = useState(false);
+    const isFirstRender = useRef(true);
+
+    useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+        } else {
+            validateField(newName, newEmail, newMsg);
+        }
+    }, [newName, newEmail, newMsg]);
+
+    const validateField = (checkName, checkEmail, checkMsg ) => {
+        let fieldValidationErrors = formErrors;
+        let emailVal = emailValid;
+        let nameVal = nameValid;
+        let messageVal = messageValid;
 
 
+        emailVal = checkEmail.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+        fieldValidationErrors.email = emailVal ? '' : ' is invalid';
+         
+        nameVal = checkName.length >= 2;
+        fieldValidationErrors.name = nameVal ? '': ' is too short';
+
+        messageVal = checkMsg.length >= 5;
+        fieldValidationErrors.message = messageVal ? '': ' is too short';
+            
+        
+       setFormErrors(fieldValidationErrors);
+       setEmailValid(emailVal);
+       setNameValid(nameVal);
+       setMessageValid(messageVal);
+    
+        if (emailVal && nameVal && messageVal){
+            setFormValid(true);
+        }
+    }
 
     const createMessage = async () => {
         const timestamp = new Date().toString();
@@ -43,9 +81,14 @@ const ContactForm = () => {
         setNewMsg("");
         // AlertMessage();
     }
+
     // render() {
     return (
         <Form>
+        <Card id="contact-validation">
+            <FormErrors formErrors= {formErrors} />
+        <Card.Body></Card.Body>
+        </Card>
             <Form.Group className="mb-3" controlId="formContactName">
                 <FloatingLabel
                     controlId="floatingInput"
@@ -89,7 +132,7 @@ const ContactForm = () => {
                     />
                 </FloatingLabel>
             </Form.Group>
-            <Button size="lg" type="button" onClick={createMessage}>
+            <Button size="lg" type="button" onClick={createMessage} disabled ={!formValid}>
                 Submit
             </Button>
         </Form>
